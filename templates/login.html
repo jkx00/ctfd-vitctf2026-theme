@@ -104,30 +104,10 @@
   <style>
     /* Login page specific styles */
     .min-vh-100 {
-      background: linear-gradient(135deg, 
-        rgba(0, 122, 255, 0.05) 0%, 
-        rgba(88, 86, 214, 0.08) 50%, 
-        rgba(255, 59, 48, 0.05) 100%
-      );
-      background-image: url("/themes/core/static/img/wmctf-hero-bg.svg");
-      background-size: cover;
-      background-position: center;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 0%, rgba(0, 255, 136, 0.08) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(0, 217, 255, 0.04) 0%, transparent 60%);
       position: relative;
-    }
-
-    .min-vh-100::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.9);
-      z-index: 0;
-    }
-
-    [data-bs-theme="dark"] .min-vh-100::before {
-      background: rgba(0, 0, 0, 0.8);
     }
 
     .container {
@@ -141,18 +121,27 @@
     }
 
     .login-header {
-      background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%) !important;
-      color: white !important;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, #00ff88 0%, #00d9ff 100%) !important;
+      color: #041006 !important;
+      text-shadow: none;
+    }
+
+    .login-header h3,
+    .login-header .text-white {
+      color: #041006 !important;
+    }
+
+    .login-header .text-white-50 {
+      color: rgba(4, 16, 6, 0.65) !important;
     }
 
     /* Custom Checkbox Styles */
     .custom-checkbox {
       width: 16px !important;
       height: 16px !important;
-      border: 1.5px solid #C6C6C8 !important;
+      border: 1.5px solid var(--dark-border) !important;
       border-radius: 30px !important;
-      background: white !important;
+      background: var(--dark-card) !important;
       transition: all 0.2s ease !important;
       cursor: pointer !important;
       margin-right: 8px !important;
@@ -160,8 +149,8 @@
     }
 
     .custom-checkbox:checked {
-      background: #007AFF !important;
-      border-color: #007AFF !important;
+      background: var(--wmctf-primary) !important;
+      border-color: var(--wmctf-primary) !important;
       box-shadow: none !important;
     }
 
@@ -177,12 +166,12 @@
     }
 
     .custom-checkbox:focus {
-      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2) !important;
+      box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2) !important;
       outline: none !important;
     }
 
     .custom-checkbox:hover {
-      border-color: #007AFF !important;
+      border-color: var(--wmctf-primary) !important;
     }
 
     .form-check {
@@ -191,7 +180,7 @@
     }
 
     .form-check-label {
-      color: #6D6D70 !important;
+      color: var(--dark-muted) !important;
       font-size: 14px !important;
       font-weight: 400 !important;
       cursor: pointer !important;
@@ -200,7 +189,7 @@
     }
 
     .form-check-label:hover {
-      color: #007AFF !important;
+      color: var(--wmctf-primary) !important;
     }
 
     .form-control-lg {
@@ -212,7 +201,7 @@
 
     .form-control-lg:focus {
       border-color: var(--wmctf-primary);
-      box-shadow: 0 0 0 0.2rem rgba(0, 122, 255, 0.15);
+      box-shadow: 0 0 0 0.2rem rgba(0, 255, 136, 0.15);
       transform: translateY(-1px);
     }
 
@@ -224,7 +213,7 @@
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
+      box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3);
     }
 
     .btn-primary:active {
@@ -233,7 +222,7 @@
 
     /* Dark mode adjustments */
     [data-bs-theme="dark"] .card {
-      background: rgba(28, 28, 30, 0.95);
+      background: rgba(10, 13, 12, 0.95);
       border: 1px solid var(--dark-border);
     }
 
@@ -256,25 +245,25 @@
     }
 
     [data-bs-theme="dark"] .custom-checkbox {
-      background: #2C2C2E !important;
-      border-color: #48484A !important;
+      background: var(--dark-card) !important;
+      border-color: var(--dark-border) !important;
     }
 
     [data-bs-theme="dark"] .custom-checkbox:checked {
-      background: #007AFF !important;
-      border-color: #007AFF !important;
+      background: var(--wmctf-primary) !important;
+      border-color: var(--wmctf-primary) !important;
     }
 
     [data-bs-theme="dark"] .custom-checkbox:hover {
-      border-color: #007AFF !important;
+      border-color: var(--wmctf-primary) !important;
     }
 
     [data-bs-theme="dark"] .form-check-label {
-      color: #EBEBF5 !important;
+      color: var(--dark-muted) !important;
     }
 
     [data-bs-theme="dark"] .form-check-label:hover {
-      color: #007AFF !important;
+      color: var(--wmctf-primary) !important;
     }
 
     /* Responsive adjustments */

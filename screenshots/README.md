@@ -1,6 +1,6 @@
 # Screenshots
 
-This directory contains screenshot images showcasing the WMCTF Modern Theme.
+This directory contains screenshot images showcasing the HackVerse cyberpunk theme.
 
 ## Required Screenshots
 
@@ -27,7 +27,3 @@ Recommended tools for taking screenshots:
 - **macOS**: Command + Shift + 4 for selective screenshots
 - **Browser DevTools**: For responsive screenshots
 - **Online Tools**: Use browser screenshot extensions
-
-## Live Reference
-
-Take screenshots from the live WMCTF 2025 platform: https://wmctf.wm-team.cn/

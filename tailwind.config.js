@@ -8,32 +8,32 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // WMCTF Brand Colors - Modern Apple-inspired palette
+        // HackVerse cyberpunk brand palette
         wmctf: {
-          primary: '#007AFF',    // Apple Blue
-          secondary: '#5856D6',  // Apple Purple
-          accent: '#FF3B30',     // Apple Red
-          success: '#34C759',    // Apple Green
-          warning: '#FF9500',    // Apple Orange
-          danger: '#FF3B30',     // Apple Red
+          primary: '#00FF88',    // Neon green
+          secondary: '#00D9FF',  // Cyan
+          accent: '#FF3B5C',     // Alert red
+          success: '#00FF88',    // Neon green
+          warning: '#FFB020',    // Amber
+          danger: '#FF3B5C',     // Alert red
         },
-        // Dark mode colors
+        // Dark surface ("midnight")
         dark: {
-          bg: '#000000',
-          surface: '#1C1C1E',
-          card: '#2C2C2E',
+          bg: '#050505',
+          surface: '#0A0D0C',
+          card: '#0D1110',
           border: '#38383A',
-          text: '#FFFFFF',
-          muted: '#8E8E93',
+          text: '#F5F5F5',
+          muted: '#8A968F',
         },
-        // Light mode colors
+        // Dim surface ("dim" — the theme's second, still-dark variant)
         light: {
-          bg: '#FFFFFF',
-          surface: '#F2F2F7',
-          card: '#FFFFFF',
+          bg: '#0D1110',
+          surface: '#111615',
+          card: '#101513',
           border: '#C6C6C8',
-          text: '#000000',
-          muted: '#6D6D70',
+          text: '#F5F5F5',
+          muted: '#93A39A',
         }
       },
       fontFamily: {

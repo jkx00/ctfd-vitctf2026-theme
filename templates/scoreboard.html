@@ -6,11 +6,12 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-8">
-          <h1 class="display-4 fw-bold mb-3 slide-up">
+          <div class="section-label">{% trans %}Rankings{% endtrans %}</div>
+          <h1 class="display-4 fw-bold mb-3 slide-up mono">
             <i class="fas fa-trophy text-warning me-3"></i>
             {% trans %}Scoreboard{% endtrans %}
           </h1>
-          <p class="lead mb-4 slide-up" style="animation-delay: 0.1s;">
+          <p class="lead mb-4 slide-up" style="animation-delay: 0.1s; color: var(--dark-muted);">
             {% trans %}See how you rank against other competitors and track your progress in real-time.{% endtrans %}
           </p>
         </div>
@@ -308,12 +309,12 @@
     }
 
     .scoreboard-row:hover {
-      background: rgba(0, 122, 255, 0.05);
+      background: rgba(0, 255, 136, 0.05);
       transform: translateX(5px);
     }
 
     .top-performer {
-      background: linear-gradient(90deg, rgba(0, 122, 255, 0.05) 0%, transparent 100%);
+      background: linear-gradient(90deg, rgba(0, 255, 136, 0.05) 0%, transparent 100%);
     }
 
     .score-display {
@@ -336,7 +337,7 @@
     }
 
     .nav-pills .nav-link:hover {
-      background: rgba(0, 122, 255, 0.1);
+      background: rgba(0, 255, 136, 0.1);
       color: var(--wmctf-primary);
     }
 
@@ -357,11 +358,11 @@
     }
 
     [data-bs-theme="dark"] .scoreboard-row:hover {
-      background: rgba(0, 122, 255, 0.1);
+      background: rgba(0, 255, 136, 0.1);
     }
 
     [data-bs-theme="dark"] .top-performer {
-      background: linear-gradient(90deg, rgba(0, 122, 255, 0.1) 0%, transparent 100%);
+      background: linear-gradient(90deg, rgba(0, 255, 136, 0.1) 0%, transparent 100%);
     }
 
     [data-bs-theme="dark"] .progress {
@@ -377,8 +378,9 @@
       position: sticky;
       left: 0;
       z-index: 10;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-      background: white !important;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+      background: var(--dark-card) !important;
+      color: var(--dark-text) !important;
     }
 
     .category-header {
@@ -525,7 +527,7 @@
 
     [data-bs-theme="dark"] .solve-indicator.solved {
       background: rgba(52, 199, 89, 0.2);
-      border-color: #34C759;
+      border-color: var(--wmctf-success);
     }
 
     [data-bs-theme="dark"] .challenge-cell {
@@ -675,26 +677,26 @@
         
         getCategoryHeaderStyle(category) {
           const colors = {
-            'web': 'background: #007AFF !important;',
-            'crypto': 'background: #5856D6 !important;',
-            'pwn': 'background: #FF3B30 !important;',
-            'reverse': 'background: #34C759 !important;',
-            'forensics': 'background: #FF9500 !important;',
-            'misc': 'background: #8E8E93 !important;'
+            'web': 'background: #00d9ff !important;',
+            'crypto': 'background: #b084ff !important;',
+            'pwn': 'background: #ff3b5c !important;',
+            'reverse': 'background: #00ff88 !important;',
+            'forensics': 'background: #ffb020 !important;',
+            'misc': 'background: #8a968f !important;'
           };
-          return colors[category.toLowerCase()] || 'background: #007AFF !important;';
+          return colors[category.toLowerCase()] || 'background: #00ff88 !important;';
         },
-        
+
         getCategoryStyle(category) {
           const colors = {
-            'web': 'background: #007AFF !important;',
-            'crypto': 'background: #5856D6 !important;',
-            'pwn': 'background: #FF3B30 !important;',
-            'reverse': 'background: #34C759 !important;',
-            'forensics': 'background: #FF9500 !important;',
-            'misc': 'background: #8E8E93 !important;'
+            'web': 'background: #00d9ff !important;',
+            'crypto': 'background: #b084ff !important;',
+            'pwn': 'background: #ff3b5c !important;',
+            'reverse': 'background: #00ff88 !important;',
+            'forensics': 'background: #ffb020 !important;',
+            'misc': 'background: #8a968f !important;'
           };
-          return colors[category.toLowerCase()] || 'background: #007AFF !important;';
+          return colors[category.toLowerCase()] || 'background: #00ff88 !important;';
         },
         
         getSolveStatus(standing, challenge) {

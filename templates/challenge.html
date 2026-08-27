@@ -49,11 +49,20 @@
       <div>
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane fade show active" id="challenge">
-            <h2 class="challenge-name text-center pt-3" x-text="getCleanChallengeName('{{ challenge.name }}')">
+            <h2 class="challenge-name text-center pt-3 mono" x-text="getCleanChallengeName('{{ challenge.name }}')">
             </h2>
-            <h3 class="challenge-value text-center">
-              {{ challenge.value }}
+            <h3 class="challenge-value text-center mono" style="color: var(--wmctf-primary); text-shadow: 0 0 18px rgba(0, 255, 136, 0.35);">
+              {{ challenge.value }} <small style="font-size: 0.55em; letter-spacing: 0.1em; opacity: 0.7;">{% trans %}POINTS{% endtrans %}</small>
             </h3>
+
+            {% if solves != None %}
+            <div class="text-center mb-2">
+              <span class="section-label" style="margin-bottom: 0;">
+                <i class="fa-solid fa-users me-1"></i>
+                {{ ngettext("%(num)d Solve", "%(num)d Solves", solves) }}
+              </span>
+            </div>
+            {% endif %}
 
 
             {% if tags %}
@@ -170,7 +179,7 @@
                       value="{{ challenge.id }}"
                   >
                   <input
-                      id="challenge-input" class="challenge-input form-control"
+                      id="challenge-input" class="challenge-input form-control mono"
                       type="text" name="submission"
                       @keyup.enter="submitChallenge()"
                       placeholder="{% trans %}Flag{% endtrans %}" x-model="submission"
@@ -203,7 +212,11 @@
                         'alert-warning': response.data.status == 'paused',
                       }" role="alert"
                   >
+                    <span class="mono">
+                    <template x-if="response.data.status == 'correct'"><i class="fa-solid fa-check me-1"></i></template>
+                    <template x-if="response.data.status == 'incorrect'"><i class="fa-solid fa-xmark me-1"></i></template>
                     <strong x-text="response.data.message"></strong>
+                  </span>
                     <div x-show="(response.data.status == 'correct' || response.data.status == 'already_solved')">
                       <div x-show="getNextId()">
                         <button @click="nextChallenge()" class="btn btn-info mt-3">

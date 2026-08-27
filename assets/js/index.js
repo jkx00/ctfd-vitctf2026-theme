@@ -9,6 +9,7 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import times from "./theme/times";
 import styles from "./theme/styles";
 import highlight from "./theme/highlight";
+import initCyberpunkTheme from "./theme/cyberpunk";
 
 import alerts from "./utils/alerts";
 import tooltips from "./utils/tooltips";
@@ -38,6 +39,8 @@ CTFd.init(window.init);
   eventRead();
   eventAlerts();
   eventToasts();
+
+  initCyberpunkTheme();
 })();
 
 export default CTFd;

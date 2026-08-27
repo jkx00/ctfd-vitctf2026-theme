@@ -1,4 +1,4 @@
-import{m as Do,C as sr}from"./index.35173d3e.js";/**
+import{m as Do,C as sr}from"./index.9fe1fd48.js";/**
  * @license
  * Copyright 2010-2025 Three.js Authors
  * SPDX-License-Identifier: MIT

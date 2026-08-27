@@ -5,12 +5,13 @@
   <div class="jumbotron">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-12 text-center">
-          <h1 class="display-5 fw-bold mb-2 slide-up">
+        <div class="col-12">
+          <div class="section-label">{% trans %}Challenges{% endtrans %}</div>
+          <h1 class="display-5 fw-bold mb-2 slide-up mono">
             <i class="fas fa-flag text-primary me-2"></i>
             {% trans %}Challenges{% endtrans %}
           </h1>
-          <p class="lead mb-0 slide-up" style="animation-delay: 0.1s;">
+          <p class="lead mb-0 slide-up text-terminal" style="animation-delay: 0.1s; color: var(--dark-muted);">
             {% trans %}Test your skills and solve challenging problems{% endtrans %}
           </p>
         </div>
@@ -125,6 +126,11 @@
              return 2; // 默认中等难度权重
            },
            
+           getDifficultyStars(challengeName) {
+             const filled = { easy: 2, medium: 3, hard: 5 }[this.getDifficultyFromName(challengeName)] || 3;
+             return '★'.repeat(filled) + '☆'.repeat(5 - filled);
+           },
+
            getSortedChallenges(category) {
              const challenges = this.getChallenges(category);
              return challenges.sort((a, b) => {
@@ -250,8 +256,11 @@
                         <!-- Card Content -->
                         <div class="card-body p-3 h-100 d-flex flex-column">
                           <!-- Challenge Name -->
-                          <h6 class="card-title fw-bold mb-2 text-truncate" x-text="getCleanChallengeName(c.name)"></h6>
-                          
+                          <h6 class="card-title fw-bold mb-1 text-truncate" x-text="getCleanChallengeName(c.name)"></h6>
+
+                          <!-- Difficulty Stars -->
+                          <div class="diff-stars mono mb-2" style="color: var(--wmctf-primary); font-size: 0.8rem; letter-spacing: 1px;" x-text="getDifficultyStars(c.name)"></div>
+
                           <!-- Points and Solve Count -->
                           <div class="d-flex justify-content-between align-items-center mb-2">
                             <span class="badge bg-gradient-primary px-2 py-1 rounded-pill fw-bold small">
@@ -476,14 +485,14 @@
   <style>
     /* User Header Styles */
     .user-header {
-      background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%) !important;
-      color: white !important;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, #00ff88 0%, #00d9ff 100%) !important;
+      color: #041006 !important;
+      text-shadow: none;
     }
 
     [data-bs-theme="dark"] .user-header {
-      background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%) !important;
-      color: white !important;
+      background: linear-gradient(135deg, #00ff88 0%, #00d9ff 100%) !important;
+      color: #041006 !important;
     }
 
     /* Three Column Layout Styles */
@@ -509,11 +518,11 @@
     }
 
     .category-filter-btn:hover {
-      background: rgba(0, 122, 255, 0.05) !important;
+      background: rgba(0, 255, 136, 0.05) !important;
     }
 
     .category-filter-btn.active {
-      background: rgba(0, 122, 255, 0.1) !important;
+      background: rgba(0, 255, 136, 0.1) !important;
       border-left: 4px solid var(--wmctf-primary);
       font-weight: 600;
     }
@@ -529,22 +538,22 @@
     }
 
     [data-bs-theme="dark"] .category-filter-btn:hover {
-      background: rgba(0, 122, 255, 0.15) !important;
+      background: rgba(0, 255, 136, 0.15) !important;
       color: var(--wmctf-primary) !important;
     }
 
     [data-bs-theme="dark"] .category-filter-btn.active {
-      background: rgba(0, 122, 255, 0.2) !important;
+      background: rgba(0, 255, 136, 0.2) !important;
       color: var(--wmctf-primary) !important;
     }
 
     /* Category Colors */
-    .category-web { border-left-color: #007AFF !important; }
-    .category-crypto { border-left-color: #5856D6 !important; }
-    .category-pwn { border-left-color: #FF3B30 !important; }
-    .category-reverse { border-left-color: #34C759 !important; }
-    .category-forensics { border-left-color: #FF9500 !important; }
-    .category-misc { border-left-color: #8E8E93 !important; }
+    .category-web { border-left-color: #00d9ff !important; }
+    .category-crypto { border-left-color: #b084ff !important; }
+    .category-pwn { border-left-color: #ff3b5c !important; }
+    .category-reverse { border-left-color: #00ff88 !important; }
+    .category-forensics { border-left-color: #ffb020 !important; }
+    .category-misc { border-left-color: #8a968f !important; }
 
     /* Challenge Card Styles - Compact */
     .challenge-card {
@@ -557,6 +566,29 @@
       position: relative;
       animation: slideUp 0.4s ease-out both;
       min-height: 140px;
+    }
+
+    .challenge-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.12), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.6s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .challenge-card:hover::before {
+      left: 120%;
+    }
+
+    .challenge-card .badge {
+      font-family: var(--font-mono);
+      letter-spacing: 0.02em;
     }
 
     /* Blood Badges Styling */
@@ -645,7 +677,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, transparent 0%, rgba(0, 122, 255, 0.1) 100%);
+      background: linear-gradient(135deg, transparent 0%, rgba(0, 255, 136, 0.1) 100%);
       opacity: 0;
       transition: opacity 0.3s ease;
       pointer-events: none;
@@ -865,7 +897,7 @@
             this.notifications = [
               {
                 id: 1,
-                title: '{% trans %}Welcome to WMCTF!{% endtrans %}',
+                title: '{% trans %}Welcome to{% endtrans %} {{ Configs.ctf_name }}!',
                 content: '{% trans %}Good luck in the competition!{% endtrans %}',
                 date: new Date().toISOString(),
                 viewed: false

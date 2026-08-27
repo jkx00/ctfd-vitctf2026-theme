@@ -8,8 +8,11 @@
             alt="{{ Configs.ctf_name }}"
             style="height: 32px; max-height: 32px; width: auto; max-width: 120px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));"
         >
+      {% else %}
+        <span class="brand-prompt" aria-hidden="true">&gt;</span>
       {% endif %}
-      <span class="fw-bold text-gradient">{{ Configs.ctf_name }}</span>
+      <span class="text-gradient">{{ Configs.ctf_name }}</span>
+      <span class="brand-cursor" aria-hidden="true">&nbsp;</span>
     </a>
 
     <button
@@ -22,6 +25,13 @@
 
     <div class="navbar-collapse" id="base-navbars" data-bs-collapse="true">
       <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link px-3 py-2 rounded-pill fw-500 {{ 'active' if request.path == '/' }}" href="{{ url_for('views.static_html', route='/') }}">
+            <i class="fas fa-terminal me-1"></i>
+            {% trans %}Home{% endtrans %}
+          </a>
+        </li>
+
         {% for page in Plugins.user_menu_pages %}
           <li class="nav-item">
             <a class="nav-link px-3 py-2 rounded-pill fw-500" href="{{ page.route }}" {% if page.link_target %}target="{{ page.link_target }}"{% endif %}>
@@ -31,14 +41,14 @@
         {% endfor %}
 
         <li class="nav-item">
-          <a class="nav-link px-3 py-2 rounded-pill fw-500" href="{{ url_for('challenges.listing') }}">
+          <a class="nav-link px-3 py-2 rounded-pill fw-500 {{ 'active' if request.endpoint == 'challenges.listing' }}" href="{{ url_for('challenges.listing') }}">
             <i class="fas fa-flag me-1"></i>
             {% trans %}Challenges{% endtrans %}
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link px-3 py-2 rounded-pill fw-500" href="{{ url_for('scoreboard.listing') }}">
+          <a class="nav-link px-3 py-2 rounded-pill fw-500 {{ 'active' if request.endpoint == 'scoreboard.listing' }}" href="{{ url_for('scoreboard.listing') }}">
             <i class="fas fa-trophy me-1"></i>
             {% trans %}Scoreboard{% endtrans %}
           </a>
@@ -46,7 +56,7 @@
 
 
         <li class="nav-item">
-          <a class="nav-link px-3 py-2 rounded-pill fw-500" href="{{ url_for('users.listing') }}">
+          <a class="nav-link px-3 py-2 rounded-pill fw-500 {{ 'active' if request.endpoint == 'users.listing' }}" href="{{ url_for('users.listing') }}">
             <i class="fas fa-user-friends me-1"></i>
             {% trans %}Users{% endtrans %}
           </a>
@@ -54,7 +64,7 @@
 
         {% if Configs.user_mode == 'teams' %}
           <li class="nav-item">
-            <a class="nav-link px-3 py-2 rounded-pill fw-500" href="{{ url_for('teams.listing') }}">
+            <a class="nav-link px-3 py-2 rounded-pill fw-500 {{ 'active' if request.endpoint == 'teams.listing' }}" href="{{ url_for('teams.listing') }}">
               <i class="fas fa-users me-1"></i>
               {% trans %}Teams{% endtrans %}
             </a>
